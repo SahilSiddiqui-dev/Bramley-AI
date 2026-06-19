@@ -773,6 +773,18 @@ export default function Home() {
             {/* Free Demo Modal Popup */}
             <ContactModal isOpen={isContactOpen} onClose={() => setIsContactOpen(false)} />
 
+            {/* Eagerly preload flag SVGs for ContactModal so they load instantly when clicked */}
+            <div className="hidden" aria-hidden="true">
+                {["us", "gb", "in", "au", "de", "fr", "ae", "sg", "za", "br", "es", "it", "jp"].map((code) => (
+                    // eslint-disable-next-line @next/next/no-img-element
+                    <img
+                        key={code}
+                        src={`https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.3.2/flags/4x3/${code}.svg`}
+                        alt=""
+                    />
+                ))}
+            </div>
+
             {/* Legal Terms Modal Popup */}
             <TermsModal isOpen={isTermsOpen} onClose={() => setIsTermsOpen(false)} />
         </div>

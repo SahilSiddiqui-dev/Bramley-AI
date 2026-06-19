@@ -526,6 +526,18 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
                                 </motion.div>
                             )}
                         </AnimatePresence>
+
+                        {/* Preload all country flags in the background for zero-latency flag switching */}
+                        <div className="hidden" aria-hidden="true">
+                            {Object.values(countryFlagMap).map((country) => (
+                                // eslint-disable-next-line @next/next/no-img-element
+                                <img
+                                    key={country}
+                                    src={`https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.3.2/flags/4x3/${country}.svg`}
+                                    alt=""
+                                />
+                            ))}
+                        </div>
                     </motion.div>
                 </div>
             )}
